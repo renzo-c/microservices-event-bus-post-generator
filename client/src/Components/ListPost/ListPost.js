@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Paper,
   Grid,
@@ -8,43 +8,51 @@ import {
   ListItemText,
 } from "@mui/material";
 import CreateComment from "../CreateComment";
+import axios from "axios";
 
 const ListPost = () => {
-  const list = [
-    { post: "loren ipsum 1", comments: [{ comment: "blab lbad 1" }] },
-    { post: "loren ipsum 2", comments: [{ comment: "blab lbad 2" }] },
-    { post: "loren ipsum 3", comments: [{ comment: "blab lbad 3" }] },
+  const [listPostsx, setListPostsx] = useState({});
+
+  const listPosts = [
+    { title: "loren ipsum 1", comments: [{ content: "blab lbad 1" }] },
+    { title: "loren ipsum 2", comments: [{ content: "blab lbad 2" }] },
+    { title: "loren ipsum 3", comments: [{ content: "blab lbad 3" }] },
   ];
+
+  const fetchPosts = async () => {
+    const res = await axios.get("http://localhost:4000/posts");
+    setListPostsx(res);
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
   return (
     <div style={{ paddingTop: "1%" }}>
-      <Grid
-        container
-        spacing={1}
-        fullWidth
-        sx={{ marginTop: 0, marginLeft: 0 }}
-      >
-        {list.map((item) => {
+      <Grid container spacing={1} sx={{ marginTop: 0, marginLeft: 0 }}>
+        {Object.entries(listPosts).map((item, idx) => {
           return (
-            <Grid item direction="column" spacing={2} sx={{ maxWidth: 400 }}>
+            <Grid key={idx} item sx={{ maxWidth: 400 }}>
               <Paper elevation={1} sx={{ padding: "15px" }}>
                 <Grid container>
                   <Grid item xs={12}>
-                    <Typography as="span" fullWidth sx={{ fontWeight: 700 }}>
+                    <Typography as="span" sx={{ fontWeight: 700 }}>
                       Post:
                     </Typography>
-                    <Typography as="span" variant="h7" fullWidth>
-                      {item.post}
+                    <Typography as="span" variant="h7">
+                      {item[1].title}
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
-                    <Typography as="div" fullWidth sx={{ fontWeight: 700 }}>
+                    <Typography as="div" sx={{ fontWeight: 700 }}>
                       Comments:
                     </Typography>
                     <List>
-                      {item.comments.map((comment) => {
+                      {item[1].comments.map((comment, idx) => {
                         return (
-                          <ListItem>
-                            <ListItemText> 👉 {comment.comment}</ListItemText>
+                          <ListItem key={idx}>
+                            <ListItemText> 👉 {comment.content}</ListItemText>
                           </ListItem>
                         );
                       })}
