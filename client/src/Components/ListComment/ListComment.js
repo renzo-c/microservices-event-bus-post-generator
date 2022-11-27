@@ -4,12 +4,12 @@ import axios from "axios";
 
 const ListComment = ({ postId }) => {
   const [comments, setComments] = useState([]);
-console.log({comments})
+// console.log({comments})
   const fetchData = async () => {
     const res = await axios.get(
       `http://localhost:4001/posts/${postId}/comments`
     );
-    setComments(res);
+    setComments(res.data);
   };
 
   useEffect(() => {

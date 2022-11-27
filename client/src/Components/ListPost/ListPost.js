@@ -1,23 +1,16 @@
 import React, { useState, useEffect } from "react";
-import {
-  Paper,
-  Grid,
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-} from "@mui/material";
+import { Paper, Grid, Typography } from "@mui/material";
 import CreateComment from "../CreateComment";
 import ListComment from "../ListComment/ListComment";
 import axios from "axios";
 
 const ListPost = () => {
   const [listPosts, setListPosts] = useState({});
-console.log({listPosts})
+  console.log({ listPosts });
 
   const fetchPosts = async () => {
     const res = await axios.get("http://localhost:4000/posts");
-    setListPosts(res);
+    setListPosts(res.data);
   };
 
   useEffect(() => {
@@ -46,7 +39,7 @@ console.log({listPosts})
                     </Typography>
                     <ListComment postId={post.id} />
                   </Grid>
-                  <CreateComment />
+                  <CreateComment postId={post.id} />
                 </Grid>
               </Paper>
             </Grid>

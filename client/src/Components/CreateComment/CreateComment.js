@@ -4,9 +4,10 @@ import axios from "axios";
 
 const CreateComment = ({postId}) => {
   const [comment, setComment] = useState({content: ''});
-
+console.log({comment, postId})
   const handleCreate = () => {
     axios.post(`http://localhost:4001/posts/${postId}/comments`, comment);
+    setComment('');
   };
 
   return (

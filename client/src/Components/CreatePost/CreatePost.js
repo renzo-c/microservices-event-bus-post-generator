@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Paper, Grid, TextField, Button } from "@mui/material";
 import axios from "axios";
 
-const Posts = () => {
+const CreatePost = () => {
   const [post, setPost] = useState({ title: "" });
 
   const handleCreate = () => {
@@ -37,4 +37,4 @@ const Posts = () => {
   );
 };
 
-export default Posts;
+export default CreatePost;

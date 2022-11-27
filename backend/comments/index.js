@@ -8,6 +8,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 const commentsByPostId = {};
+// console.log({commentsByPostId})
 
 app.get("posts/:id/comments", (req, res) => {
   res.send(commentsByPostId[req.params.id]);
@@ -15,8 +16,11 @@ app.get("posts/:id/comments", (req, res) => {
 
 app.post("posts/:id/comments", (req, res) => {
   const commentId = uuidv4();
+  console.log({commentId})
   const { content } = req.body;
+  console.log({content})
   const comments = commentsByPostId[req.params.id] || [];
+  console.log({id: req.params.id})
 
   comments.push({ id: commentId, content });
 
