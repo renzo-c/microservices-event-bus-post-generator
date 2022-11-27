@@ -6,7 +6,6 @@ import axios from "axios";
 
 const ListPost = () => {
   const [listPosts, setListPosts] = useState({});
-  console.log({ listPosts });
 
   const fetchPosts = async () => {
     const res = await axios.get("http://localhost:4000/posts");
