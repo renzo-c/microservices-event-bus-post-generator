@@ -1,20 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { List, ListItem, ListItemText } from "@mui/material";
-import axios from "axios";
 
-const ListComment = ({ postId }) => {
-  const [comments, setComments] = useState([]);
-  const fetchData = async () => {
-    const res = await axios.get(
-      `http://localhost:4001/posts/${postId}/comments`
-    );
-    setComments(res.data);
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
+const ListComment = ({ comments }) => {
   return (
     <List>
       {comments.map((comment, idx) => {

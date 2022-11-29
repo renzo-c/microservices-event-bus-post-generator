@@ -24,7 +24,6 @@ app.post("/events", (req, res) => {
     const post = posts[postId];
     post.comments.push({ id, content });
   }
-  console.log({ posts });
   res.send({});
 });
 

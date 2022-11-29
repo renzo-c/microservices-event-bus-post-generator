@@ -8,7 +8,7 @@ const ListPost = () => {
   const [listPosts, setListPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:4000/posts");
+    const res = await axios.get("http://localhost:4002/posts");
     setListPosts(res.data);
   };
 
@@ -19,9 +19,9 @@ const ListPost = () => {
   return (
     <div style={{ paddingTop: "1%" }}>
       <Grid container spacing={1} sx={{ marginTop: 0, marginLeft: 0 }}>
-        {Object.entries(listPosts).map(([id, post], idx) => {
+        {Object.entries(listPosts).map(([id, post]) => {
           return (
-            <Grid key={idx} item sx={{ maxWidth: 400 }}>
+            <Grid key={id} item sx={{ maxWidth: 400 }}>
               <Paper elevation={1} sx={{ padding: "15px" }}>
                 <Grid container>
                   <Grid item xs={12}>
@@ -36,7 +36,7 @@ const ListPost = () => {
                     <Typography as="div" sx={{ fontWeight: 700 }}>
                       Comments:
                     </Typography>
-                    <ListComment postId={post.id} />
+                    <ListComment comments={post.comments} />
                   </Grid>
                   <CreateComment postId={post.id} />
                 </Grid>
