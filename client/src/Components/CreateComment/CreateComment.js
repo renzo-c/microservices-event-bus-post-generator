@@ -6,7 +6,7 @@ const CreateComment = ({ postId }) => {
   const [comment, setComment] = useState({ content: "" });
 
   const handleCreate = () => {
-    axios.post(`http://localhost:4001/posts/${postId}/comments`, comment);
+    axios.post(`http://posts.com/posts/${postId}/comments`, comment);
     setComment({ content: "" });
   };
 

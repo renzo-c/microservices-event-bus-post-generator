@@ -6,7 +6,7 @@ const CreatePost = () => {
   const [post, setPost] = useState({ title: "" });
 
   const handleCreate = () => {
-    axios.post("http://localhost:4000/posts", post);
+    axios.post("http://posts.com/posts/create", post);
     setPost({ title: "" });
   };
 
