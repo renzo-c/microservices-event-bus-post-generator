@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: posts
-          image: rcnavarrop/posts
+          image: rcnavarrop/posts:latest
 ---
 apiVersion: v1
 kind: Service
@@ -22,6 +22,7 @@ metadata:
   name: posts-clusterip-srv
 spec:
   selector:
+    type: ClusterIP
     app: posts
   ports:
     - name: posts

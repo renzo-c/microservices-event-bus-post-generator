@@ -21,6 +21,7 @@ kind: Service
 metadata:
   name: event-bus-srv
 spec:
+  type: ClusterIP
   selector:
     app: event-bus
   ports:
